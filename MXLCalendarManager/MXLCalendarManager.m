@@ -115,7 +115,8 @@
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\n+" options:NSRegularExpressionCaseInsensitive error:&error];
     NSString *icsStringWithoutNewlines = [regex stringByReplacingMatchesInString:icsString options:0 range:NSMakeRange(0, [icsString length]) withTemplate:@""];
-
+    regex = [NSRegularExpression regularExpressionWithPattern:@"\n +" options:NSRegularExpressionCaseInsensitive error:&error];
+    icsStringWithoutNewlines = [regex stringByReplacingMatchesInString:icsStringWithoutNewlines options:0 range:NSMakeRange(0, [icsStringWithoutNewlines length]) withTemplate:@""];
     // Pull out each line from the calendar file
     NSMutableArray *eventsArray = [NSMutableArray arrayWithArray:[icsStringWithoutNewlines componentsSeparatedByString:@"BEGIN:VEVENT"]];
 
